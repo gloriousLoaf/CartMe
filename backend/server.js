@@ -1,6 +1,4 @@
 const express = require('express');
-const { fchown } = require('fs/promises');
-const { func } = require('prop-types');
 const app = express();
 const products = require('./data/products');
 
