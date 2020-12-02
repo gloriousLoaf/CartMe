@@ -1,0 +1,28 @@
+{
+  "name": "cart-me",
+  "version": "1.0.0",
+  "description": "MERN Shopping Cart app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gloriousLoaf/CartMe.git"
+  },
+  "keywords": [
+    "MERN",
+    "React",
+    "ecommerce"
+  ],
+  "author": "David Metcalf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gloriousLoaf/CartMe/issues"
+  },
+  "homepage": "https://github.com/gloriousLoaf/CartMe#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
