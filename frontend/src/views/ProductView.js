@@ -8,8 +8,6 @@ import Loader from '../components/Loader';
 import { listProductDetails } from '../actions/productActions';
 
 const ProductView = ({ history, match }) => {
-  // Brad had default useState as 0, but that was making
-  // add 1 to cart = 0, but larger quantites still worked
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 

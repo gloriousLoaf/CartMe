@@ -1,3 +1,4 @@
+/* MONGODB CONNECTOR */
 import mongoose from 'mongoose';
 
 const connectDB = async () => {

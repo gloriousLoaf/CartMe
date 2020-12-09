@@ -1,3 +1,4 @@
+/* USERS - Seeders */
 import bcrypt from 'bcryptjs';
 
 const users = [

@@ -1,3 +1,4 @@
+/* PRODUCT MODEL */
 import mongoose from 'mongoose';
 
 const reviewSchema = mongoose.Schema({
