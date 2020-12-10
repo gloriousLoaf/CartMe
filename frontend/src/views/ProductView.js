@@ -1,3 +1,4 @@
+/* PRODUCT VIEW */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ const ProductView = ({ history, match }) => {
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match]);
 
+  // If Cart View reached by add-to-cart, url reflects id & qty
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
   };
@@ -104,6 +106,6 @@ const ProductView = ({ history, match }) => {
       }
     </>
   )
-}
+};
 
 export default ProductView;

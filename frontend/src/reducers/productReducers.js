@@ -1,3 +1,4 @@
+/* PRODUCT REDUCERS */
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -22,6 +23,7 @@ export const productListReducer = (state = { products: [] },
   };
 };
 
+// State for product details
 export const productDetailsReducer = (state = { product: { reviews: [] } },
   action) => {
   switch (action.type) {

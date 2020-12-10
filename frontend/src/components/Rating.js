@@ -1,3 +1,4 @@
+/* RATING COMPONENT */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -5,6 +6,7 @@ const Rating = ({ value, text, color }) => {
   return (
     <div className="rating">
       <span>
+        {/* evaluate rating in db, assign font awesome stars */}
         <i style={{color: color}} 
         className={
           value >= 1 
@@ -59,6 +61,7 @@ const Rating = ({ value, text, color }) => {
   );
 };
 
+// defaults and required props for ratings
 Rating.defaultProps = {
   color: '#f8d125'
 };
