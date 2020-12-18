@@ -2,21 +2,28 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Form,
+  Button,
+  Card,
+} from 'react-bootstrap';
 import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
-
 
 const CartView = ({ match, location, history }) => {
   // id and qty from URL (won't always have id)
   const productId = match.params.id;
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
-  
+
   const dispatch = useDispatch();
 
-  const cart = useSelector(state => state.cart);
+  const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  
+
   useEffect(() => {
     // using && instead of if - watch for bugs
     productId && dispatch(addToCart(productId, qty));
@@ -37,10 +44,14 @@ const CartView = ({ match, location, history }) => {
     <Row>
       <Col md={8}>
         <h1>Shopping Cart</h1>
-        {cartItems.length === 0 ? <Message>Your cart is empty. 
-          <Link to='/'> Go Back</Link></Message> : (
+        {cartItems.length === 0 ? (
+          <Message>
+            Your cart is empty.
+            <Link to='/'> Go Back</Link>
+          </Message>
+        ) : (
           <ListGroup variant='flush'>
-            {cartItems.map(item => (
+            {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
                 <Row>
                   <Col md={2}>
@@ -52,9 +63,16 @@ const CartView = ({ match, location, history }) => {
                   <Col md={2}>{item.price}</Col>
                   <Col md={2}>
                     {/* Change qty in cart, like in ProductView */}
-                    <Form.Control as='select' value={item.qty} onChange={e => 
-                      dispatch(addToCart(item.product, Number(e.target.value)))}>
-                      {[...Array(item.countInStock).keys()].map(x => (
+                    <Form.Control
+                      as='select'
+                      value={item.qty}
+                      onChange={(e) =>
+                        dispatch(
+                          addToCart(item.product, Number(e.target.value))
+                        )
+                      }
+                    >
+                      {[...Array(item.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>
@@ -62,8 +80,11 @@ const CartView = ({ match, location, history }) => {
                     </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Button type='button' variant='light' onClick={() => 
-                      removeFromCartHandler(item.product)}>
+                    <Button
+                      type='button'
+                      variant='light'
+                      onClick={() => removeFromCartHandler(item.product)}
+                    >
                       <i className='fas fa-trash'></i>
                     </Button>
                   </Col>
@@ -79,12 +100,21 @@ const CartView = ({ match, location, history }) => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                items
               </h2>
-              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
+              $
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>
+              <Button
+                type='button'
+                className='btn-block'
+                disabled={cartItems.length === 0}
+                onClick={checkoutHandler}
+              >
                 Proceed To Checkout
               </Button>
             </ListGroup.Item>
@@ -92,7 +122,7 @@ const CartView = ({ match, location, history }) => {
         </Card>
       </Col>
     </Row>
-  )
+  );
 };
 
 export default CartView;
