@@ -16,6 +16,35 @@ h3 {
   padding: 1rem 0;
 }
 
+a,
+a:hover {
+  outline: none;
+  color: inherit;
+}
+
+a:focus {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.card a:focus {
+  outline: 2px solid;
+}
+
 .rating span {
   margin: 0.1rem;
+}
+
+.navbar-dark {
+  background-color: var(--gray-dark);
+}
+.navbar-dark .navbar-toggler {
+  border-radius: 8%;
+  background-color: var(--warning);
+}
+
+@media (max-width: 768px) {
+  #delete {
+    margin-top: 0.75rem;
+  }
 }

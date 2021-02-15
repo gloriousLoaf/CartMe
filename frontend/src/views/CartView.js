@@ -27,9 +27,6 @@ const CartView = ({ match, location, history }) => {
   useEffect(() => {
     // using && instead of if - watch for bugs
     productId && dispatch(addToCart(productId, qty));
-    // if (productId) {
-    //   dispatch(addToCart(productId, qty));
-    // }
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
@@ -47,7 +44,9 @@ const CartView = ({ match, location, history }) => {
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty.
-            <Link to='/'> Go Back</Link>
+            <Link className='ml-1' to='/'>
+              Back to store.
+            </Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
@@ -81,6 +80,7 @@ const CartView = ({ match, location, history }) => {
                   </Col>
                   <Col md={2}>
                     <Button
+                      id='delete'
                       type='button'
                       variant='light'
                       onClick={() => removeFromCartHandler(item.product)}

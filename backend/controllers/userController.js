@@ -3,9 +3,11 @@ import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
 
-// @desc      Auth user & get token
-// @route     POST /api/users/login
-// @access    Public
+/**
+ * @desc      Auth user & get token
+ * @route     POST /api/users/login
+ * @access    Public
+ */
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -24,9 +26,11 @@ const authUser = asyncHandler(async (req, res) => {
   throw new Error('Invalid email or password');
 });
 
-// @desc      Register new user
-// @route     POST /api/users
-// @access    Public
+/**
+ * @desc      Register new user
+ * @route     POST /api/users
+ * @access    Public
+ */
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
   // is user already in db?
@@ -56,9 +60,11 @@ const registerUser = asyncHandler(async (req, res) => {
   throw new Error('Account already exists for this email.');
 });
 
-// @desc      Get user profile
-// @route     GET /api/users/profile
-// @access    Private
+/**
+ * @desc      Get user profile
+ * @route     GET /api/users/profile
+ * @access    Private
+ */
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   if (user) {

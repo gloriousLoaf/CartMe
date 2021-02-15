@@ -6,13 +6,15 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
     case CART_ADD_ITEM:
       const item = action.payload;
       // is item is already in cartItems?
-      const existItem = state.cartItems.find((e) => e.product === item.product);
+      const existItem = state.cartItems.find(
+        (curr) => curr.product === item.product
+      );
       // Yes? Return state. No? Spread across items and add new item.
       if (existItem) {
         return {
           ...state,
-          cartItems: state.cartItems.map((x) =>
-            x.product === existItem.product ? item : x
+          cartItems: state.cartItems.map((curr) =>
+            curr.product === existItem.product ? item : curr
           ),
         };
       } else {
