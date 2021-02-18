@@ -35,12 +35,15 @@ a:focus {
   margin: 0.1rem;
 }
 
-.navbar-dark {
-  background-color: var(--gray-dark);
-}
 .navbar-dark .navbar-toggler {
-  border-radius: 8%;
-  background-color: var(--warning);
+  border-radius: 2px;
+  background-color: var(--yellow);
+}
+
+#cartLogo {
+  max-width: 35px;
+  margin-right: 0.5rem;
+  padding-bottom: 0.6rem;
 }
 
 @media (max-width: 768px) {

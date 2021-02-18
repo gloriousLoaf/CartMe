@@ -35,6 +35,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 
 // middleware - salting presave
 userSchema.pre('save', async function (next) {
+  // do not rehash if not modified
   if (!this.isModified('password')) {
     next();
   }

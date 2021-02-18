@@ -55,7 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid user data.');
   };
 
-  // if they don't alread exist, create new user
+  // if user doesn't already exist, create new user
   !userExists ? createUser() : res.status(400);
   throw new Error('Account already exists for this email.');
 });
@@ -76,7 +76,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error('User not found.');
   }
 });
 
