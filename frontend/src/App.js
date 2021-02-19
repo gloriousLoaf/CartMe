@@ -11,6 +11,7 @@ import RegisterView from './views/RegisterView';
 import ProfileView from './views/ProfileView';
 import ShippingView from './views/ShippingView';
 import PaymentView from './views/PaymentView';
+import PlaceOrderView from './views/PlaceOrderView';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/login' component={LoginView} />
           <Route path='/shipping' component={ShippingView} />
           <Route path='/payment' component={PaymentView} />
+          <Route path='/placeorder' component={PlaceOrderView} />
           <Route path='/register' component={RegisterView} />
           <Route path='/profile' component={ProfileView} />
           <Route path='/product/:id' component={ProductView} />

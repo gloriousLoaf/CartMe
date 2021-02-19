@@ -37,6 +37,10 @@ const CartView = ({ match, location, history }) => {
     history.push('/login?redirect=shipping');
   };
 
+  const continueHandler = () => {
+    history.push('/');
+  };
+
   return (
     <Row>
       <Col md={8}>
@@ -108,14 +112,25 @@ const CartView = ({ match, location, history }) => {
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
             </ListGroup.Item>
+
             <ListGroup.Item>
               <Button
                 type='button'
-                className='btn-block'
+                className='btn-block my-3'
+                variant='success'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
                 Proceed To Checkout
+              </Button>
+
+              <Button
+                type='button'
+                className='btn-block my-3'
+                variant='warning'
+                onClick={continueHandler}
+              >
+                Continue Shopping
               </Button>
             </ListGroup.Item>
           </ListGroup>
