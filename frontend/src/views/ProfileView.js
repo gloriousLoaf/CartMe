@@ -31,7 +31,7 @@ const ProfileView = ({ location, history }) => {
       history.push('/login');
     } else {
       /**
-       * this is not working right. w/out success and RESET,
+       * this is not working right. w/out ` || success` and RESET,
        * the message works but name won't update in header.
        * but if included, we lose message but gain name update.
        */
@@ -51,7 +51,6 @@ const ProfileView = ({ location, history }) => {
       setMessage('Passwords do not match.');
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
-      // setUpdateMessage(true);
     }
   };
 
