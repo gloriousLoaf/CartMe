@@ -14,16 +14,18 @@ const authUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   // if user exists & password match
-  user && (await user.matchPassword(password))
-    ? res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
-        token: generateToken(user._id),
-      })
-    : res.status(401);
-  throw new Error('Invalid email or password');
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(401);
+    throw new Error('Invalid email or password');
+  }
 });
 
 /**
@@ -35,6 +37,10 @@ const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
   // is user already in db?
   const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists');
+  }
   // new user obj
   const user = await User.create({
     name,
@@ -42,22 +48,18 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
   });
   // create user
-  const createUser = () => {
-    user
-      ? res.status(201).json({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          isAdmin: user.isAdmin,
-          token: generateToken(user._id),
-        })
-      : res.status(400);
-    throw new Error('Invalid user data.');
-  };
-
-  // if user doesn't already exist, create new user
-  !userExists ? createUser() : res.status(400);
-  throw new Error('Account already exists for this email.');
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error('Invalid user data');
+  }
 });
 
 /**
