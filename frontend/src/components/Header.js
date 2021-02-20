@@ -24,7 +24,10 @@ const Header = () => {
               <Navbar.Brand href='/'>Cart•Me</Navbar.Brand>
             </span>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Toggle
+            aria-controls='basic-navbar-nav'
+            className='rounded-0'
+          />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>

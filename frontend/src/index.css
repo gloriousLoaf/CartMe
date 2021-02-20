@@ -16,6 +16,8 @@ h3 {
   padding: 1rem 0;
 }
 
+/* here through next comment, overriding some bootstrap
+  and improving keyboard focus */
 a,
 a:hover {
   outline: none;
@@ -35,10 +37,18 @@ a:focus {
   margin: 0.1rem;
 }
 
-.navbar-dark .navbar-toggler {
-  border-radius: 2px;
-  background-color: var(--yellow);
+.btn,
+.card,
+.alert {
+  border-radius: 0px;
 }
+
+.alert {
+  opacity: 0.8;
+}
+
+/* adjust rgb stroke .navbar-dark .navbar-toggler-icon
+  in boostrap.min.css to create orange lines in mobile nav */
 
 #cartLogo {
   max-width: 35px;
