@@ -124,14 +124,16 @@ const CartView = ({ match, location, history }) => {
                 Proceed To Checkout
               </Button>
 
-              <Button
-                type='button'
-                className='btn-block my-3'
-                variant='warning'
-                onClick={continueHandler}
-              >
-                Continue Shopping
-              </Button>
+              {cartItems.length > 0 && (
+                <Button
+                  type='button'
+                  className='btn-block my-3'
+                  variant='warning'
+                  onClick={continueHandler}
+                >
+                  Continue Shopping
+                </Button>
+              )}
             </ListGroup.Item>
           </ListGroup>
         </Card>
