@@ -13,6 +13,7 @@ import {
   ORDER_MY_HISTORY_REQUEST,
   ORDER_MY_HISTORY_SUCCESS,
   ORDER_MY_HISTORY_FAIL,
+  ORDER_MY_HISTORY_RESET,
 } from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -100,6 +101,10 @@ export const orderMyHistoryReducer = (state = { orders: [] }, action) => {
       return {
         loading: false,
         error: action.payload,
+      };
+    case ORDER_MY_HISTORY_RESET:
+      return {
+        orders: [],
       };
     default:
       return state;
