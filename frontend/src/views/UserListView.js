@@ -1,24 +1,38 @@
 /* USER LIST VIEW - ADMIN */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listUsers } from '../actions/userActions';
+import { listUsers, deleteUser } from '../actions/userActions';
 
-const UserListView = () => {
+const UserListView = ({ history }) => {
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
+
   useEffect(() => {
-    dispatch(listUsers());
-  }, [dispatch]);
+    // send non-admins & unauth'd users to login
+    userInfo && userInfo.isAdmin
+      ? dispatch(listUsers())
+      : history.push('/login');
+  }, [dispatch, userInfo, history, successDelete]);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const deleteHandler = (id) => {
-    console.log('delete user: ' + id);
+    dispatch(deleteUser(id));
+    handleClose();
   };
 
   return (
@@ -63,10 +77,41 @@ const UserListView = () => {
                   <Button
                     variant='danger'
                     className='btn-sm'
-                    onClick={() => deleteHandler(user._id)}
+                    onClick={handleShow}
                   >
-                    <i className='fas fa-trash'></i>
+                    <i
+                      className='fas fa-trash'
+                      style={{ padding: '3px 2px' }}
+                    ></i>
                   </Button>
+                  <Modal
+                    show={show}
+                    onHide={handleClose}
+                    backdrop='static'
+                    keyboard={false}
+                    centered
+                    size='sm'
+                  >
+                    <Modal.Title className='d-flex p-3 mx-auto text-center'>
+                      Delete this user?
+                    </Modal.Title>
+                    <Modal.Body className='d-flex p-2 mx-auto'>
+                      <Button
+                        variant='danger'
+                        className='mx-2'
+                        onClick={() => deleteHandler(user._id)}
+                      >
+                        Delete
+                      </Button>
+                      <Button
+                        variant='primary'
+                        className='mx-2'
+                        onClick={handleClose}
+                      >
+                        Cancel
+                      </Button>
+                    </Modal.Body>
+                  </Modal>
                 </td>
               </tr>
             ))}
