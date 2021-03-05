@@ -37,6 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
   // is user already in db?
   const userExists = await User.findOne({ email });
+
   if (userExists) {
     res.status(400);
     throw new Error('User already exists');
@@ -47,6 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
   });
+
   // create user
   if (user) {
     res.status(201).json({
@@ -69,6 +71,7 @@ const registerUser = asyncHandler(async (req, res) => {
  */
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+
   if (user) {
     res.json({
       _id: user._id,
@@ -89,6 +92,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
  */
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
@@ -136,6 +140,52 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc      Get a user by id
+ * @route     GET /api/users/:id
+ * @access    Private/Admin
+ */
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password');
+
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error('User not found.');
+  }
+});
+
+/**
+ * @desc      Update user
+ * @route     PUT /api/users/:id
+ * @access    Private/Admin
+ */
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    // admin can set isAdmin to false. if undefined, fallback to original value
+    // could be nullish operator, but those are scary...
+    // user.isAdmin = req.body.isAdmin ?? user.isAdmin;
+    user.isAdmin =
+      req.body.isAdmin === undefined || null ? user.isAdmin : req.body.isAdmin;
+
+    const updatedUser = await user.save();
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found.');
+  }
+});
+
 export {
   authUser,
   registerUser,
@@ -143,4 +193,6 @@ export {
   updateUserProfile,
   getUsers,
   deleteUser,
+  getUserById,
+  updateUser,
 };
