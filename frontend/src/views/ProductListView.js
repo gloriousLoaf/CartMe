@@ -5,7 +5,7 @@ import { Table, Button, Modal, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProducts } from '../actions/productActions';
+import { listProducts, deleteProduct } from '../actions/productActions';
 
 const ProductListView = ({ history, match }) => {
   const [show, setShow] = useState(false);
@@ -13,6 +13,13 @@ const ProductListView = ({ history, match }) => {
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -22,13 +29,13 @@ const ProductListView = ({ history, match }) => {
     userInfo && userInfo.isAdmin
       ? dispatch(listProducts())
       : history.push('/login');
-  }, [dispatch, userInfo, history]);
+  }, [dispatch, userInfo, history, successDelete]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const deleteHandler = (id) => {
-    // dispatch(deleteProducts(id));
+    dispatch(deleteProduct(id));
     handleClose();
   };
 
@@ -48,6 +55,8 @@ const ProductListView = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
