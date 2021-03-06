@@ -69,7 +69,7 @@ const UserListView = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant='light' className='btn-sm'>
                       <i className='fa fa-edit'></i>
                     </Button>
@@ -77,6 +77,7 @@ const UserListView = ({ history }) => {
                   <Button
                     variant='danger'
                     className='btn-sm'
+                    disabled={userInfo._id === user._id}
                     onClick={handleShow}
                   >
                     <i

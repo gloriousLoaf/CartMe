@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 
 const PlaceOrderView = ({ history }) => {
   const dispatch = useDispatch();
@@ -36,8 +37,8 @@ const PlaceOrderView = ({ history }) => {
   useEffect(() => {
     // order._id doesn't exist yet
     success && history.push(`/order/${order._id}`);
-    // eslint-disable-next-line
-  }, [history, success]);
+    dispatch({ type: ORDER_CREATE_RESET });
+  }, [dispatch, history, success, order]);
 
   const placeOrderHandler = (e) => {
     dispatch(
