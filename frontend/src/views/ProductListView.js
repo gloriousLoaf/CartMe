@@ -5,7 +5,13 @@ import { Table, Button, Modal, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProducts, deleteProduct } from '../actions/productActions';
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+  // updateProduct,
+} from '../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 const ProductListView = ({ history, match }) => {
   const [show, setShow] = useState(false);
@@ -21,15 +27,34 @@ const ProductListView = ({ history, match }) => {
     success: successDelete,
   } = productDelete;
 
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   useEffect(() => {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+
     // send non-admins & unauth'd users to login
-    userInfo && userInfo.isAdmin
-      ? dispatch(listProducts())
-      : history.push('/login');
-  }, [dispatch, userInfo, history, successDelete]);
+    !userInfo.isAdmin && history.push('/login');
+    // after successful creation, send admin to edit
+    successCreate
+      ? history.push(`/admin/product/${createdProduct._id}/edit`)
+      : dispatch(listProducts());
+  }, [
+    dispatch,
+    userInfo,
+    history,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,8 +64,8 @@ const ProductListView = ({ history, match }) => {
     handleClose();
   };
 
-  const createProductHandler = (product) => {
-    // create product
+  const createProductHandler = () => {
+    dispatch(createProduct());
   };
 
   return (
@@ -55,8 +80,10 @@ const ProductListView = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
-      {loadingDelete && <Loader />}
+      {/* eliminates double loader on delete, but possibly bad practice? */}
+      {loadingDelete || (loadingCreate && <Loader />)}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
