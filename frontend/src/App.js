@@ -13,6 +13,7 @@ import ShippingView from './views/ShippingView';
 import PaymentView from './views/PaymentView';
 import PlaceOrderView from './views/PlaceOrderView';
 import OrderView from './views/OrderView';
+import OrderListView from './views/OrderListView';
 import UserListView from './views/UserListView';
 import UserEditView from './views/UserEditView';
 import ProductListView from './views/ProductListView';
@@ -38,6 +39,7 @@ const App = () => {
           <Route path='/admin/user/:id/edit' component={UserEditView} />
           <Route path='/admin/productlist' component={ProductListView} />
           <Route path='/admin/product/:id/edit' component={ProductEditView} />
+          <Route path='/admin/orderlist' component={OrderListView} />
         </Container>
       </main>
       <Footer />
