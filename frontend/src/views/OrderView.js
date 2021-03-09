@@ -16,6 +16,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants';
+import { dateFix } from '../helpers/dateFix';
 
 const OrderView = ({ match, history }) => {
   const orderId = match.params.id;
@@ -103,7 +104,7 @@ const OrderView = ({ match, history }) => {
               </p>
               {order.isDelivered ? (
                 <Message variant='success'>
-                  Delivered on {order.deliveredAt.substring(0, 10)}
+                  Delivered on {dateFix(order.deliveredAt)}
                 </Message>
               ) : (
                 <Message variant='danger'>Not Delivered</Message>
@@ -118,7 +119,7 @@ const OrderView = ({ match, history }) => {
               </p>
               {order.isPaid ? (
                 <Message variant='success'>
-                  Paid on {order.paidAt.substring(0, 10)}
+                  Paid on {dateFix(order.paidAt)}
                 </Message>
               ) : (
                 <Message variant='danger'>Not Paid</Message>

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listOrders } from '../actions/orderActions';
+import { dateFix } from '../helpers/dateFix';
 
 const OrderListView = ({ history }) => {
   const dispatch = useDispatch();
@@ -48,18 +49,18 @@ const OrderListView = ({ history }) => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
+                <td>{dateFix(order.createdAt)}</td>
                 <td>${order.totalPrice}</td>
                 <td>
                   {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
+                    dateFix(order.paidAt)
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
-                    order.deliveredAt.substring(0, 10)
+                    dateFix(order.deliveredAt)
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}

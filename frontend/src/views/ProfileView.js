@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { listMyOrders } from '../actions/orderActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import { dateFix } from '../helpers/dateFix';
 
 const ProfileView = ({ history }) => {
   const [name, setName] = useState('');
@@ -135,18 +136,18 @@ const ProfileView = ({ history }) => {
               {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>{dateFix(order.createdAt)}</td>
                   <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
+                      dateFix(order.paidAt)
                     ) : (
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
+                      dateFix(order.deliveredAt)
                     ) : (
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
