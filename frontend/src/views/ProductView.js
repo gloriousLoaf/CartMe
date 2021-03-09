@@ -11,6 +11,7 @@ import {
   Button,
   Form,
   FormGroup,
+  Modal,
 } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
@@ -23,6 +24,8 @@ const ProductView = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [show, setShow] = useState(false);
+
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -36,13 +39,16 @@ const ProductView = ({ history, match }) => {
 
   useEffect(() => {
     if (successReview) {
-      alert('Review submitted!');
+      handleShow();
       setRating(0);
       setComment('');
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match, successReview]);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // If Cart View reached by add-to-cart, url reflects id & qty
   const addToCartHandler = () => {
@@ -193,7 +199,7 @@ const ProductView = ({ history, match }) => {
                           onChange={(e) => setComment(e.target.value)}
                         ></Form.Control>
                       </Form.Group>
-                      <Button type='submit' variant='success'>
+                      <Button type='submit' onSubmit={submitHandler}>
                         Submit
                       </Button>
                     </Form>
@@ -206,6 +212,23 @@ const ProductView = ({ history, match }) => {
               </ListGroup>
             </Col>
           </Row>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop='static'
+            keyboard={false}
+            centered
+            size='sm'
+          >
+            <Modal.Title className='d-flex p-3 mx-auto text-center'>
+              Review submitted!
+            </Modal.Title>
+            <Modal.Body className='d-flex p-2 mx-auto'>
+              <Button variant='success' className='mx-2' onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Body>
+          </Modal>
         </>
       )}
     </>
