@@ -8,18 +8,26 @@ import Product from '../models/productModel.js';
  * @access    Public
  */
 const getProducts = asyncHandler(async (req, res) => {
+  const pageSize = 4;
+  const page = Number(req.query.pageNumber) || 1;
   // account for keyword search: param or empty
   const keyword = req.query.keyword
     ? {
         name: {
           $regex: req.query.keyword,
-          $options: 'i', // case insensitve
+          $options: 'i',
         },
       }
     : {};
 
-  const products = await Product.find({ ...keyword });
-  res.json(products);
+  const countOfProducts = await Product.countDocuments({ ...keyword });
+  // limit to pageSize, skip previous items
+  // i.e. 10 * (3 - 1) = skip first 20
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  res.json({ products, page, pages: Math.ceil(countOfProducts / pageSize) });
 });
 
 /**

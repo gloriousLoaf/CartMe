@@ -47,6 +47,26 @@ a:focus {
   opacity: 0.8;
 }
 
+/* restyling the default blue pagination */
+.page-link {
+  z-index: 3;
+  color: #9c27b0;
+  border-color: #9c27b0;
+}
+.page-link:hover {
+  color: #000;
+}
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+  border-radius: 0;
+}
+/* inherits color: #fff */
+.page-item.active .page-link {
+  z-index: 3;
+  background-color: #9c27b0;
+  border-color: #9c27b0;
+}
+
 /* adjust rgb stroke .navbar-dark .navbar-toggler-icon
   in boostrap.min.css to create orange lines in mobile nav */
 
@@ -59,5 +79,8 @@ a:focus {
 @media (max-width: 768px) {
   #delete {
     margin-top: 0.75rem;
+  }
+  .pagination {
+    margin-top: 1rem;
   }
 }
