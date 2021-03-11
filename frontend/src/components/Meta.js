@@ -11,18 +11,22 @@ const Meta = ({ title, description, keywords }) => {
         property='og:description'
         content={description}
       />
-      <meta name='url' property='og:url' content='https://metcalf.dev'></meta>
+      <meta
+        name='url'
+        property='og:url'
+        content='http://cart-me.herokuapp.com/'
+      ></meta>
       <meta name='keywords' content={keywords} />
       <meta property='og:locale' content='en_US' />
       <meta property='og:type' content='website' />
       <meta
         name='image'
         property='og:image'
-        content='https://metcalf.dev/assets/images/CartMe.png'
+        content='http://cart-me.herokuapp.com/images/logo192.png'
       />
       <meta
         property='og:image:secure_url'
-        content='https://metcalf.dev/assets/images/CartMe.png'
+        content='http://cart-me.herokuapp.com/images/logo192.png'
       />
       <meta property='og:image:width' content='743' />
       <meta property='og:image:height' content='272' />
@@ -35,7 +39,7 @@ const Meta = ({ title, description, keywords }) => {
       />
       <meta
         name='twitter:image'
-        content='https://metcalf.dev/assets/images/CartMe.png'
+        content='http://cart-me.herokuapp.com/images/logo192.png'
       />
     </Helmet>
   );
