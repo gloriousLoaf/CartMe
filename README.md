@@ -61,9 +61,9 @@ To start your own instance, clone this repository and run `npm install` from the
 <p>&nbsp;</p>
 
 ## 📷 Images
-<img src="https://github.com/gloriousLoaf/Snipit-Social/blob/main/frontend/public/logo192.png" alt="Cart Me brand" height="225">
+<img src="https://github.com/gloriousLoaf/CartMe/blob/main/frontend/public/logo192.png" alt="Cart Me brand" height="225">
 <p>&nbsp;</p>
-<img src="https://github.com/gloriousLoaf/Snipit-Social/blob/main/frontend/public/images/shoppingcart.png" alt="Shopping cart screen at CartMe website" height="400">
+<img src="https://github.com/gloriousLoaf/CartMe/blob/main/frontend/public/images/shoppingcart.png" alt="Shopping cart screen at CartMe website" height="350">
 <p>&nbsp;</p>
 
 ## 🔮 Future Development
