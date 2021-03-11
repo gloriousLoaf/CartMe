@@ -4,6 +4,9 @@
   "description": "MERN Shopping Cart app",
   "main": "server.js",
   "type": "module",
+  "engines": { 
+    "node": ">=14.15.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server",
