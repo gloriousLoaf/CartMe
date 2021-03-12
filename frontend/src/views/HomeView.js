@@ -20,8 +20,6 @@ const HomeView = ({ match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pages, page } = productList;
 
-  console.log(products);
-
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
