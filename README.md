@@ -26,9 +26,7 @@
 #### **CartMe Login** - Real cool, but not a real store.
 * You may create your own CartMe login with whatever details you care to use, fake or real.
 * I will never share or distribute any personal information you provide to CartMe.
-* Also, you can just use this dummy account:
-* Email: person1@mail.com
-* Password: 123456
+* A lot of functionality can be tested without a login, but not checkout.
 <p>&nbsp;</p>
 
 ## 📝 Description
