@@ -19,7 +19,7 @@ import Loader from '../components/Loader';
 import Meta from '../components/Meta';
 import { listProductDetails, createReview } from '../actions/productActions';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
-import { dateFix } from '../helpers/dateFix';
+import { dateFix } from '../helpers/helpers';
 
 const ProductView = ({ history, match }) => {
   const [qty, setQty] = useState(1);

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listOrders } from '../actions/orderActions';
-import { dateFix } from '../helpers/dateFix';
+import { dateFix } from '../helpers/helpers';
 
 const OrderListView = ({ history }) => {
   const dispatch = useDispatch();

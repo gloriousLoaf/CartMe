@@ -113,6 +113,32 @@ a:focus {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff9800' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
 }
 
+#github:hover i,
+#github a:focus i {
+  animation: spinner 0.8s 1 linear;
+}
+#github a {
+  font-weight: 500;
+  transition: font-size 1s, letter-spacing 1s;
+}
+#github:hover a,
+#github a:focus {
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #ff9800;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-359deg);
+  }
+}
+
 @media (max-width: 768px) {
   #delete {
     margin-top: 0.75rem;

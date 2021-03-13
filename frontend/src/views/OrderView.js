@@ -16,7 +16,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants';
-import { dateFix } from '../helpers/dateFix';
+import { dateFix } from '../helpers/helpers';
 
 const OrderView = ({ match, history }) => {
   const orderId = match.params.id;
