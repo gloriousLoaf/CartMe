@@ -1,10 +1,11 @@
 /* SHIPPING VIEW */
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../actions/cartActions';
+import Message from '../components/Message';
 
 const ShippingView = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -24,59 +25,80 @@ const ShippingView = ({ history }) => {
   };
 
   return (
-    <FormContainer>
-      <CheckoutSteps step1 step2 />
-      <h1>Shipping</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId='address'>
-          <Form.Label>Address</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter address'
-            value={address}
-            required
-            onChange={(e) => setAddress(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+    <>
+      <FormContainer>
+        <CheckoutSteps step1 step2 />
+        <h1>Shipping</h1>
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId='address'>
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Enter address'
+              value={address}
+              required
+              onChange={(e) => setAddress(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId='city'>
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter city'
-            value={city}
-            required
-            onChange={(e) => setCity(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId='city'>
+            <Form.Label>City</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Enter city'
+              value={city}
+              required
+              onChange={(e) => setCity(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId='postalCode'>
-          <Form.Label>Postal Code</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter postal code'
-            value={postalCode}
-            required
-            onChange={(e) => setPostalCode(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId='postalCode'>
+            <Form.Label>Postal Code</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Enter postal code'
+              value={postalCode}
+              required
+              onChange={(e) => setPostalCode(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId='country'>
-          <Form.Label>Country</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter county'
-            value={country}
-            required
-            onChange={(e) => setCountry(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId='country'>
+            <Form.Label>Country</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Enter county'
+              value={country}
+              required
+              onChange={(e) => setCountry(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Button type='submit' variant='primary'>
-          Continue
-        </Button>
-      </Form>
-    </FormContainer>
+          <Button type='submit' variant='primary'>
+            Continue
+          </Button>
+        </Form>
+        <Row className='mt-3'>
+          <Message>
+            <p>
+              CartMe is a demo app. 123 Main St. is fine, just don't expect a
+              package to show up!
+            </p>
+            <p>
+              For more details, see the&nbsp;
+              <a
+                href='https://github.com/gloriousLoaf/CartMe'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                GitHub repository
+              </a>
+              .
+            </p>
+          </Message>
+        </Row>
+      </FormContainer>
+    </>
   );
 };
 

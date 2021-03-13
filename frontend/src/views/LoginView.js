@@ -67,6 +67,25 @@ const LoginView = ({ location, history }) => {
           </Link>
         </Col>
       </Row>
+      <Row>
+        <Message>
+          <p>
+            CartMe is a demo app. I will not share your information or send you
+            any emails. Fake data is fine.
+          </p>
+          <p>
+            For more details, see the&nbsp;
+            <a
+              href='https://github.com/gloriousLoaf/CartMe'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              GitHub repository
+            </a>
+            .
+          </p>
+        </Message>
+      </Row>
     </FormContainer>
   );
 };
