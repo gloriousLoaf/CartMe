@@ -32,11 +32,9 @@ const Meta = ({ title, description, keywords }) => {
       <meta property='og:image:height' content='272' />
       <meta property='og:image:type' content='image/png' />
       <meta name='twitter:card' content='summary_large_image'></meta>
+      <meta name='twitter:creator' content='@davidmcodes' />
       <meta name='twitter:title' content='Cart•Me'></meta>
-      <meta
-        name='twitter:description'
-        content="CartMe offers the best prices on all of your favorite brands. It's your cart, faster."
-      />
+      <meta name='twitter:description' content={description} />
       <meta
         name='twitter:image'
         content='http://cart-me.herokuapp.com/images/logo192.png'

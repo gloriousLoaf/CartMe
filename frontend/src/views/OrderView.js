@@ -210,13 +210,13 @@ const OrderView = ({ match, history }) => {
               <ListGroup.Item>
                 <Message>
                   <p>
-                    CartMe is a demo app. The PayPal buttons above launch a
-                    sandboxed login form that will not accept your real PayPal
-                    account credentials and cannot charge you "real money".
+                    CartMe is a demo app. The buttons above take you to PayPal,
+                    but I have blocked it from accepting your real PayPal login
+                    or charging you real money.
                   </p>
                   <p>
-                    To see it in action, please use the login credentials in
-                    the&nbsp;
+                    If you want to see the rest of the checkout process, please
+                    use the special PayPal login credentials in the&nbsp;
                     <a
                       href='https://github.com/gloriousLoaf/CartMe'
                       target='_blank'
