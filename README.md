@@ -17,7 +17,7 @@
 * [Questions](#-questions)
 <p>&nbsp;</p>
 
-#### Get straight to the business? **Visit** [CartMe](https://cart-me-app.onrender.com/)  
+#### Get straight to the business? **Visit** [CartMe](https://cartme.metcalf.dev/)  
 
 #### **PayPal Sandbox** - Since this is a demo, please use the following dummy PayPal account at checkout:
 * Email: sb-43qvoe5172906@personal.example.com
@@ -48,8 +48,8 @@ To start your own instance, clone this repository and run `npm install` from the
 ```
  I built this app to store data using **MongoDB Atlas** cloud hosting. Please [see their docs for information](https://docs.atlas.mongodb.com/) regarding setting up a cluster for this app. You will need to create a `.env` file and save your MONGO_URI to the file. Authorizing users relies on tokens from node package [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken). When setting up tokens, remember to drop your JWT_SECRET into the `.env`. Lastly, the checkout process utilizes [PayPal's Developer](https://developer.paypal.com/developer/applications) sandbox. Login with your PayPal account, navigate to that URL and select *My Apps & Credentials* from the Dashboard to create a sandbox app. Their docs are thorough, dig in.  
  To develop and run the app:
-* **Local Instance:** To test and develop locally, open a **Node** enabled terminal window, navigate to the root directory and run `npm run dev` to start the servers listening and connect to MongoDB. Unless altered, all data will hit your cloud database by default. This script tells npm *Concurrently* to start both servers listening at ports 3000 and 5000 respectively. Launch your browser, navigate to `localhost:3000` and begin using CartMe!
-* **Web Instance:** Connect your MongoDB cloud cluster to you preferred cloud platform for website hosting. I used **[Render](https://docs.render.com/)** to deploy this app, go here to checkout 👉 **[CartMe](https://cart-me-app.onrender.com/)** in action.
+* **Local Instance:** To test and develop locally, open a **Node** enabled terminal window, navigate to the root directory and run `npm run dev` to start the servers listening and connect to MongoDB. Unless altered, all data will hit your cloud database by default. This script tells npm *Concurrently* to start both servers listening at ports 3000 and 5000 respectively. Launch your browser, navigate to `localhost:3000` and begin using Me!
+* **Web Instance:** Connect your MongoDB cloud cluster to you preferred cloud platform for website hosting. I used **[Render](https://docs.render.com/)** to deploy this app, go here to checkout 👉 **[Me](https://cartme.metcalf.dev/)** in action.
 <p>&nbsp;</p>
 
 ## 📲 Usage
@@ -81,10 +81,6 @@ To start your own instance, clone this repository and run `npm install` from the
 * [PayPal Developer API](https://developer.paypal.com/developer/applications)
 * [bcryptjs](https://www.npmjs.com/package/bcryptjs) and [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) for authentication.
 * [multer](https://www.npmjs.com/package/multer) for image file uploading.
-<p>&nbsp;</p>
-
-## 📚 Resources
-The inspiration for this project came from [Brad Taversy's](https://www.youtube.com/user/TechGuyWeb) course on React and Redux full stack apps.
 <p>&nbsp;</p>
 
 ## ❔ Questions?
